@@ -1,0 +1,47 @@
+<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+	<button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+		<i class="glyphicon glyphicon-cog"></i>
+	</button>
+	<button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+		<i class="glyphicon glyphicon-align-justify"></i>
+	</button>
+
+	<!-- brand -->
+	<a href="" class="navbar-brand text-lt">
+		<!-- <i class="fa fa-btc"></i> -->
+		<span class="hidden-folded m-l-xs">{{app.name}}</span>
+	</a>
+	<!-- / brand -->
+</div>
+<!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+	<!-- buttons -->
+	<div class="nav navbar-nav hidden-xs">
+		<a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+			<i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+		</a>
+	</div>
+	<ul class="nav navbar-nav right">
+		<li class="dropdown" dropdown>
+			<a href class="dropdown-toggle clear" dropdown-toggle>
+				<span class=" pull-right m-l-sm">
+					<div>{{app.user.position}}&nbsp;{{app.user.username}}</div>
+				</span>
+
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu animated fadeInRight w" ng-controller="SigninCtrl">
+				<li>
+					<a ui-sref="app.table.myInfo">个人信息</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a ng-click="logout()">安全退出</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

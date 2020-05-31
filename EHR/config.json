@@ -1,0 +1,27 @@
+{
+	"host": "localhost",
+	"port": "4000",
+	"jwt_expiretime": "36000",
+	"channelName": "mychannel",
+	"CC_SRC_PATH": "../artifacts",
+	"eventWaitTime": "30000",
+	"admins": [
+		{
+			"username": "admin",
+			"secret": "adminpw"
+		}
+	],
+	"db": [
+		{
+			"username": "root",
+			"passwd": "writeyouroassword",
+			"port": 3306,
+			"timezone": "+08:00"
+		}
+	],
+	"request-timeout": 450000,
+	"orgname": [
+		"河南第一医院",
+		"河南第二医院"
+	]
+}

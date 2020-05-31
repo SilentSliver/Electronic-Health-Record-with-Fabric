@@ -1,0 +1,17 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">拒签原因</h3>
+			<form role="form">
+				<textarea name="D_resn" class="form-control" ng-model="item.D_resn"></textarea>
+				<div class="button m-t-lg">
+					<button type="submit" class="btn btn-warn m-t-n-xs"
+						ng-show="item.O_resn == 'WaitForSign'" ng-click="ok('SU00')"><strong>拒签</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs"
+						ng-click="cancel()"><strong>关闭</strong></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

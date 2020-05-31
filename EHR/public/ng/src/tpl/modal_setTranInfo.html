@@ -1,0 +1,18 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">病历信息</h3>
+			<h4 class="error" ng-show="item.O_state == 'Accepted'">病历状态：已接受</h4>
+			<h4 class="error" ng-show="item.O_state == 'WaitForTransfer'">病历状态：待接受转院</h4>
+			<h4 class="error" ng-show="item.O_state == 'Rejected'">病历状态：已拒绝</h4>
+
+			<div data-ng-include=" 'tpl/tpl_historyList.html' "></div>
+
+			<form role="form">
+				<div data-ng-include=" 'tpl/tpl_recordInfo_disable.html' "></div>
+			</form>
+		</div>
+
+	</div>
+</div>

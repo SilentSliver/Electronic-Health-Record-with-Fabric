@@ -1,0 +1,18 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">病历信息</h3>
+			<h4 class="error" ng-show="item.D_sign == 'Signed'">病历状态：已签字</h4>
+			<h4 class="error" ng-show="item.D_sign == 'WaitForSign'">病历状态：待签字</h4>
+			<h4 class="error" ng-show="item.D_sign == 'Reject'">病历状态：已拒绝</h4>
+
+			<div data-ng-include=" 'tpl/tpl_historyList.html' "></div>
+
+			<form role="form">
+				<div data-ng-include=" 'tpl/tpl_recordInfo_disable.html' "></div>
+			</form>
+		</div>
+
+	</div>
+</div>

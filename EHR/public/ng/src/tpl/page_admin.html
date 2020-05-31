@@ -1,0 +1,54 @@
+<div class="wrapper-md" ng-controller="AdminCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading">病历列表</div>
+        <table st-table="rowCollectionPage" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>病人名称</th>
+                    <th>记录时间</th>
+                    <th>记录医生</th>
+                    <th>记录医生工号</th>
+                    <th>（待）签字护士</th>
+                    <th>（待）签字护士工号</th>
+                    <th>病历状态</th>
+                    <th>操作</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rowCollectionPage">
+                    <td>{{row.P_name}}</td>
+                    <td>{{row.R_inday}}</td>
+                    <td>{{row.D_name}}</td>
+                    <td>{{row.D_pin}}</td>
+                    <td>{{row.D_snam}}</td>
+                    <td>{{row.D_spin}}</td>
+                    <td>
+                        <div ng-show="row.P_bih && row.P_ward=='' && row.D_sigs == 'WaitForSign'">待分配病房</div>
+                        <div
+                            ng-show="(row.P_bih && row.P_ward !='' && row.D_sigs == 'WaitForSign')||(!row.P_bih && row.D_sigs == 'WaitForSign')">
+                            待签字</div>
+                        <div ng-show="row.D_sigs == 'Signed'">已签字</div>
+                        <div ng-show="row.D_sigs == 'Reject'">已拒绝</div>
+                    </td>
+                    <td><button class="btn m-b-xs w-xs btn-success" ng-click="view(row)">详情</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin">
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <script type="text/ng-template" id="adminRecordInfo.html">
+            <div ng-include="'tpl/modal_adminRecordInfo.html'"></div>
+        </script>
+        <script type="text/ng-template" id="acceptTRInfo.html">
+			<div ng-include="'tpl/modal_acceptTran.html'"></div>
+		</script>
+    </div>
+</div>

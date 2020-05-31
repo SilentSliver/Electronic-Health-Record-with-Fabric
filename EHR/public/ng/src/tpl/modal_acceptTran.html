@@ -1,0 +1,22 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">接受转院</h3>
+			<form role="form">
+				<div class="form-group">
+					<label>签字护士工号</label>
+					<select class="form-control" ng-model="selected.select_nurse" ng-options="x.value for x in select_nurselist"
+						required>
+					</select>
+				</div>
+				<div class="button m-t-lg">
+					<button type="submit" class="btn btn-success m-t-n-xs"
+						ng-show="item.O_state == 'WaitForTransfer'" ng-click="ok('SU00')"><strong>接受</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs"
+						ng-click="cancel()"><strong>关闭</strong></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

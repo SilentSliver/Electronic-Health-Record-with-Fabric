@@ -1,0 +1,23 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">请求转院</h3>
+			<form role="form">
+				<div class="form-group">
+					<label>待转院区</label>
+					<select ng-model="item.O_tnam" class="form-control">
+						<option ng-show="item.O_name!='河南第一医院'" value="河南第一医院">河南第一医院</option>
+						<option ng-show="item.O_name!='河南第二医院'" value="河南第二医院">河南第二医院</option>
+					</select>
+				</div>
+				<div class="button m-t-lg">
+					<button type="submit" class="btn btn-success m-t-n-xs" ng-show="item.O_state == 'NotRequire'"
+						ng-click="ok('SU00')"><strong>提交申请</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs"
+						ng-click="cancel()"><strong>关闭</strong></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

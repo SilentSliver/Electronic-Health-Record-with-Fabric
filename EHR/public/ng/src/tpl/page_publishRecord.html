@@ -1,0 +1,143 @@
+<div class="modal-body wrapper-lg" ng-controller="PublishRecordCtrl">
+	<form>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>医生名称</label>
+					<span class="form-control">{{item.D_name}}</span>
+				</div>
+				<div class="form-group">
+					<label>医生工号</label>
+					<span class="form-control">{{item.D_pin}}</span>
+				</div>
+				<div class="form-group">
+					<label>所在院区</label>
+					<span class="form-control">{{item.O_name}}</span>
+				</div>
+				<div class="form-group">
+					<label>所看科室</label>
+					<span class="form-control">{{item.P_dpt}}</span>
+				</div>
+				<div class="form-group">
+					<label>签字护士工号</label>
+					<select class="form-control" ng-model="select_nurse" ng-options="x.value for x in select_nurselist"
+						required>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>是否住院</label>&nbsp;&nbsp;&nbsp;
+					<input name="P_bih" type="checkbox" ng-model="item.P_bih">
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>病人名称</label>
+					<input name="P_name" type="text" class="form-control" placeholder="输入病人名称" ng-model="item.P_name"
+						required>
+				</div>
+				<div class="form-group">
+					<label>病人证件号码</label>
+					<input name="P_id" type="text" class="form-control" placeholder="输入病人证件号码" ng-model="item.P_id"
+						ng-blur="getAge()" required>
+				</div>
+				<div class="form-group">
+					<label>病人性别</label>&nbsp;&nbsp;&nbsp;
+					<label><input name="P_sex" type="radio" ng-model="item.P_sex" value="男"
+							ng-checked="true">男</label>&nbsp;
+					<label><input name="P_sex" type="radio" ng-model="item.P_sex" value="女">女</label>&nbsp;
+					<label><input name="P_sex" type="radio" ng-model="item.P_sex" value="其他">其他</label>
+				</div>
+				<div class="form-group">
+					<label>病人年龄</label>
+					<input name="P_age" type="number" class="form-control" placeholder="输入病人年龄" ng-model="item.P_age"
+						required disabled>
+				</div>
+				<div class="form-group">
+					<label>病人民族</label>
+					<input name="P_nat" type="text" class="form-control" placeholder="输入病人民族" ng-model="item.P_nat"
+						required>
+				</div>
+				<div class="form-group">
+					<label>病人电话</label>
+					<input name="P_tel" type="tel" class="form-control" placeholder="输入病人电话" ng-model="item.P_tel"
+						required>
+				</div>
+				<div class="form-group" ng-show="item.P_bih">
+					<label>病人住址</label>
+					<input name="P_add" type="text" class="form-control" placeholder="输入病人住址" ng-model="item.P_add">
+				</div>
+				<div class="form-group">
+					<label>病人职业</label>
+					<input name="P_occ" type="text" class="form-control" placeholder="输入病人职业" ng-model="item.P_occ"
+						required>
+				</div>
+				<div class="form-group" ng-show="item.P_bih">
+					<label>病人出生地</label>
+					<input name="P_bthplace" type="text" class="form-control" placeholder="输入病人出生地"
+						ng-model="item.P_bthplace">
+				</div>
+				<div class="form-group" ng-show="item.P_bih">
+					<label>病人婚姻状况</label>&nbsp;&nbsp;&nbsp;
+					<label><input name="P_marstate" type="radio" ng-model="item.P_marstate" value="已婚"
+							ng-checked="true">已婚</label>&nbsp;
+					<label><input name="P_marstate" type="radio" ng-model="item.P_marstate" value="未婚">未婚</label>&nbsp;
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group" ng-show="item.P_bih">
+					<label>亲属姓名</label>
+					<input name="RS_name" type="text" class="form-control" placeholder="输入亲属姓名" ng-model="item.RS_name">
+				</div>
+				<div class="form-group" ng-show="item.P_bih">
+					<label>亲属关系</label>
+					<input name="RS_rels" type="text" class="form-control" placeholder="输入亲属关系" ng-model="item.RS_rels">
+				</div>
+				<div class="form-group" ng-show="item.P_bih">
+					<label>亲属电话</label>
+					<input name="RS_tel" type="tel" class="form-control" placeholder="输入亲属电话" ng-model="item.RS_tel">
+				</div>
+				<div class="form-group">
+					<label>是否抽烟</label>&nbsp;&nbsp;&nbsp;
+					<input name="P_smoke" type="checkbox" ng-model="item.P_smoke">
+				</div>
+				<div class="form-group">
+					<label>是否酗酒</label>&nbsp;&nbsp;&nbsp;
+					<input name="P_alchl" type="checkbox" ng-model="item.P_alchl">
+				</div>
+				<div class="form-group">
+					<label>过敏原</label>
+					<input name="R_anplcg" type="text" class="form-control" placeholder="输入感染病史"
+						ng-model="item.R_anplcg">
+				</div>
+				<div class="form-group">
+					<label>感染病史</label>
+					<input name="R_indish" type="text" class="form-control" placeholder="输入感染病史"
+						ng-model="item.R_indish">
+				</div>
+				<div class="form-group">
+					<label>遗传病史</label>
+					<input name="R_gtdish" type="text" class="form-control" placeholder="输入家族遗传病"
+						ng-model="item.R_gtdish">
+				</div>
+				<div class="form-group">
+					<label>诊断</label>
+					<!-- <input name="P_dgn" type="" class="form-control" placeholder="输入签名人证件号码"
+                           ng-model="item.P_dgn" required> -->
+					<textarea name="P_dgn" class="form-control" ng-model="item.P_dgn" rows="6"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 text-right">
+				<div class="text-danger wrapper" ng-show="msg">
+					{{msg}}
+				</div>
+				<div class="button m-t-lg">
+					<input type="submit" class="btn btn-success m-t-n-xs" ng-click="save()" value="提交">
+					<button type="submit" class="btn btn-default m-t-n-xs" ng-click="cancel()"><strong>取消</strong>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,52 @@
+<div class="wrapper-md" ng-controller="GetTransferCtrl">
+	<div class="panel panel-default">
+		<div class="panel-heading">病历列表</div>
+
+		<table st-table="rowCollectionPage" class="table table-striped">
+			<thead>
+				<tr>
+					<th>病人名称</th>
+					<th>病人身份证号</th>
+					<th>发起医院</th>
+					<th>转院发起日期</th>
+					<th>病历状态</th>
+					<th>初步诊断</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="row in rowCollectionPage">
+					<td>{{row.P_name}}</td>
+					<td>{{row.P_id}}</td>
+					<td>{{row.O_name}}</td>
+					<td>{{row.O_qtd}}</td>
+					<td>{{row.P_dgn}}</td>
+					<td>
+						<div ng-show="item.O_state == 'WaitForTransfer'">待接受</div>
+						<div ng-show="item.O_state == 'Accepted'">已签字</div>
+						<div ng-show="item.O_state == 'Rejected'">已拒绝</div>
+					</td>
+					<td><button class="btn m-b-xs w-xs btn-success" ng-click="view(row)">详情</button></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="7" class="text-center">
+						<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7" class="no-margin">
+						</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<script type="text/ng-template" id="requireTRInfo.html">
+			<div ng-include="'tpl/modal_getTranInfo.html'"></div>
+		</script>
+		<script type="text/ng-template" id="acceptTRInfo.html">
+			<div ng-include="'tpl/modal_acceptTran.html'"></div>
+		</script>
+		<script type="text/ng-template" id="rejectTRInfo.html">
+			<div ng-include="'tpl/modal_rejectTran.html'"></div>
+		</script>
+	</div>
+</div>

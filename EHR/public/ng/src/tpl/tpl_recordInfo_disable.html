@@ -1,0 +1,136 @@
+<div class="row">
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label>医生名称</label>
+			<span class="form-control">{{item.D_name}}</span>
+		</div>
+		<div class="form-group">
+			<label>医生工号</label>
+			<span class="form-control">{{item.D_pin}}</span>
+		</div>
+		<div class="form-group">
+			<label>所在院区</label>
+			<span class="form-control">{{item.O_name}}</span>
+		</div>
+		<div class="form-group">
+			<label>所看科室</label>
+			<span class="form-control">{{item.P_dpt}}</span>
+		</div>
+		<div class="form-group">
+			<label>是否住院</label>&nbsp;&nbsp;&nbsp;
+			<input name="P_bih" type="checkbox" ng-model="item.P_bih" disabled>
+		</div>
+		<div class="form-group">
+			<label>入院/问诊日期</label>&nbsp;&nbsp;&nbsp;
+			<span class="form-control">{{item.R_inday}}</span>
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>所住病房</label>
+			<br />
+			<span class="form-control" ng-show="!visable">{{item.P_ward}}</span>
+			<label ng-show="visable">楼层</label><select ng-show="visable" class="form-control" ng-model="selectbedfloor"
+				ng-options="x for x in selectbedfloorlist" ng-init="selectbedfloor = selectbedfloorlist[0]"
+				ng-change="changeRoomlist(selectbedfloor)"></select>
+			<label ng-show="visable">房间号</label><select ng-show="visable" class="form-control" ng-model="selectbedroom"
+				ng-options="x for x in selectbedroomlist" ng-init="selectbedroom = selectbedroomlist[0]"
+				ng-change="changeBedlist(selectbedfloor,selectbedroom)"></select>
+			<label ng-show="visable">床位</label><select ng-show="visable" class="form-control" ng-model="selectbed"
+				ng-options="x for x in selectbedlist" ng-init="selectbed = selectbedlist[0]"
+				ng-change="saveBed(selectbed)"></select>
+		</div>
+		<div class="form-group" ng-show="item.D_resn!=''">
+			<label>拒签原因</label>
+			<textarea name="D_resn" class="form-control" ng-model="item.D_resn" rows="2"
+				ng-disabled="app.role == '医生'"></textarea>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label>病人名称</label>
+			<span class="form-control">{{item.P_name}}</span>
+		</div>
+		<div class="form-group">
+			<label>病人证件号码</label>
+			<span class="form-control">{{item.P_id}}</span>
+		</div>
+		<div class="form-group">
+			<label>病人性别</label>
+			<span class="form-control">{{item.P_sex}}</span>
+		</div>
+		<div class="form-group">
+			<label>病人年龄</label>
+			<span class="form-control">{{item.P_age}}</span>
+		</div>
+		<div class="form-group">
+			<label>病人民族</label>
+			<span class="form-control">{{item.P_nat}}</span>
+		</div>
+		<div class="form-group">
+			<label>病人电话</label>
+			<input name="P_tel" type="tel" class="form-control" placeholder="输入病人电话" ng-model="item.P_tel" required>
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>病人住址</label>
+			<input name="P_add" type="text" class="form-control" placeholder="输入病人住址" ng-model="item.P_add">
+		</div>
+		<div class="form-group">
+			<label>病人职业</label>
+			<span class="form-control">{{item.P_occ}}</span>
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>病人出生地</label>
+			<span class="form-control">{{item.P_bthplace}}</span>
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>病人婚姻状况</label>&nbsp;&nbsp;&nbsp;
+			<span class="form-control">{{item.P_marstate}}</span>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group" ng-show="item.P_bih">
+			<label>亲属姓名</label>
+			<input name="RS_name" type="text" class="form-control" placeholder="输入亲属姓名" ng-model="item.RS_name"
+				ng-disabled="app.role =='医生'">
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>亲属关系</label>
+			<input name="RS_rels" type="text" class="form-control" placeholder="输入亲属关系" ng-model="item.RS_rels"
+				ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group" ng-show="item.P_bih">
+			<label>亲属电话</label>
+			<input name="RS_tel" type="tel" class="form-control" placeholder="输入亲属电话" ng-model="item.RS_tel"
+				ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>是否抽烟</label>&nbsp;&nbsp;&nbsp;
+			<input name="P_smoke" type="checkbox" ng-model="item.P_smoke" ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>是否酗酒</label>&nbsp;&nbsp;&nbsp;
+			<input name="P_alchl" type="checkbox" ng-model="item.P_alchl" ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>过敏原</label>
+			<input name="R_anplcg" type="text" class="form-control" placeholder="输入感染病史" ng-model="item.R_anplcg"
+				ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>感染病史</label>
+			<input name="R_indish" type="text" class="form-control" placeholder="输入感染病史" ng-model="item.R_indish"
+				ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>遗传病史</label>
+			<input name="R_gtdish" type="text" class="form-control" placeholder="输入家族遗传病" ng-model="item.R_gtdish"
+				ng-disabled="app.role == '医生'">
+		</div>
+		<div class="form-group">
+			<label>诊断</label>
+			<!-- <input name="P_dgn" type="" class="form-control" placeholder="输入签名人证件号码"
+				   ng-model="item.P_dgn" required> -->
+			<textarea name="P_dgn" class="form-control" ng-model="item.P_dgn" rows="6"
+				ng-disabled="app.role == '医生'"></textarea>
+		</div>
+	</div>
+</div>

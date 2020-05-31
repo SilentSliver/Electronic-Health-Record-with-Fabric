@@ -1,0 +1,67 @@
+<div class="modal-body wrapper-lg" ng-controller="MyInfoCtrl">
+	<form name="myinfo">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>用户名</label>
+					<span class="form-control">{{item.username}}</span>
+				</div>
+				<div class="form-group">
+					<label>密码</label>
+					<input name="password" type="password" id="password" class="form-control" placeholder="若不修改密码不必填写"
+						ng-model="item.password" />
+				</div>
+				<div class="form-group">
+					<label>确认密码</label>
+					<input name="confirmpassword" type="password" id="confirmpassword" class="form-control"
+						placeholder="请输入确认密码" ng-model="item.confirmpassword" />
+					<div class="text-danger wrapper" ng-show="myinfo.password.$valid">
+						<span ng-show="item.confirmpassword!=item.password">*两次密码输入不一致</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>工号</label>
+					<span class="form-control">{{item.pin}}</span>
+				</div>
+				<div class="form-group">
+					<label>所在单位</label>
+					<span class="form-control">{{item.orgname}}</span>
+				</div>
+				<div class="form-group">
+					<label>职位</label>
+					<span class="form-control">{{item.position}}</span>
+				</div>
+				<div class="form-group">
+					<label>身份证号</label>
+					<span class="form-control">{{item.identity}}</span>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>所在科室</label>
+					<!-- <input name="department" type="text" class="form-control" placeholder="输入记录名称"
+                           ng-model="item.department"> -->
+					<span class="form-control">{{item.department}}</span>
+				</div>
+				<div class="form-group">
+					<label>居住地</label>
+					<input name="address" type="text" class="form-control" placeholder="输入记录证件号码"
+						ng-model="item.address" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 text-right">
+				<div class="button m-t-lg">
+					<button type="submit" class="btn btn-success m-t-n-xs" ng-click="upInfo()"
+						ng-disabled="item.confirmpassword!=item.password">
+						<strong>提交</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs" ng-click="cancel()"><strong>取消</strong>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

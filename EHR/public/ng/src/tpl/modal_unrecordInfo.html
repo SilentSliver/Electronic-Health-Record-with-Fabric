@@ -1,0 +1,34 @@
+<div class="modal-body wrapper-lg">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="m-t-none m-b font-thin">病历信息</h3>
+			<h4 class="error" ng-show="item.D_sigs == 'Signed'">病历状态：已签字</h4>
+			<h4 class="error" ng-show="visable && (item.P_bih && item.P_ward=='' && item.D_sigs == 'WaitForSign')">待分配病房</h4>
+			<h4 class="error" ng-show="!visable && ((item.P_bih && item.P_ward !='' && item.D_sigs == 'WaitForSign')||(!item.P_bih && item.D_sigs == 'WaitForSign'))">待签字</h4>
+			<h4 class="error" ng-show="item.D_sigs == 'Reject'">病历状态：已拒签</h4>
+
+			<div data-ng-include=" 'tpl/tpl_historyList.html' "></div>
+
+			<form role="form">
+
+				<div data-ng-include=" 'tpl/tpl_recordInfo_disable.html' "></div>
+
+				<div class="button m-t-lg">
+					<button type="submit" class="btn btn-success m-t-n-xs" ng-show="(!visable && (item.P_bih && item.D_sigs == 'WaitForSign'))||(!item.P_bih && item.D_sigs == 'WaitForSign')"
+						ng-click="ok('SU00')"><strong>签字</strong></button>
+					<button type="submit" class="btn btn-success m-t-n-xs" ng-show="(!visable && (item.P_bih && item.D_sigs == 'WaitForSign'))||(!item.P_bih && item.D_sigs == 'WaitForSign')"
+						ng-click="ok('SU01')"><strong>更新</strong></button>
+					<button type="submit" class="btn btn-success m-t-n-xs" ng-show="visable && item.P_bih && item.D_sigs == 'WaitForSign'"
+						ng-click="ok('SU04')"><strong>分配病房</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs" ng-show="item.D_sigs == 'WaitForSign'"
+						ng-click="ok('SU02')"><strong>拒签</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs" ng-show="item.D_sigs == 'WaitForSign' && item.P_bih"
+						ng-click="ok('SU03')"><strong>转院</strong></button>
+					<button type="submit" class="btn btn-default m-t-n-xs"
+						ng-click="cancel()"><strong>关闭</strong></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
